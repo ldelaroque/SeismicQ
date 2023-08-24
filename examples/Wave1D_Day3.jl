@@ -5,13 +5,13 @@ function MainSource()
     # Spatial extent
     Lx   = 25.0
 
-    # Mechanical parameters 
+    # Initial mechanical parameters 
     ρ₀   = 1500.0
     K₀   = 1.e9
     G₀   = 1.e8
     c₀   = sqrt((K₀+4/3*G₀)/ρ₀) 
      
-    # Discretization
+    # Discretization of the spatial domain
     Ncx = 100
     Δx  = Lx/Ncx
     xv  = LinRange(0,Lx,Ncx+1)
@@ -22,8 +22,8 @@ function MainSource()
     t₀   = 1.2/𝑓₀
     isrc = Int((Ncx/2)+1)
 
-    # Time domain
-    Δt   = min(1e10, Δx/c₀) # Courant criteria from wavespeed
+    # Time domain set up
+    Δt   = min(1e10, Δx/c₀) # Courant criteria from wavespeed 
     Nt   = 200
     Nout = 10
     t    = -t₀
@@ -51,7 +51,7 @@ function MainSource()
     bc_filtE_v = 1.0 .- exp.(-(xv.- Lx).^2/Lbc.^2)
     bc_filtE_c = 1.0 .- exp.(-(xc.- Lx).^2/Lbc.^2)
 
-    # Time loop
+    # Loop over time for the wave computation
      @time for it=1:Nt
 
         # Compute Ricker function
