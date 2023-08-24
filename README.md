@@ -1,4 +1,4 @@
-# SeismicQ
+# Estimation of the seismic quality factor
 
 <h1> <img src="docs/src/assets/logo.png" alt="SeismicQ.jl" width="50"> SeismicQ </h1>
 
